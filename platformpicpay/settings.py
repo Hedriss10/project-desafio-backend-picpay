@@ -12,7 +12,6 @@ DEBUG = str(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = ["*"]
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -60,17 +59,15 @@ REST_FRAMEWORK = {
 WSGI_APPLICATION = 'platformpicpay.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'apirestdjangoframework',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': 'db',
-        'PORT': '5432',
+    "default": {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': str(os.getenv('DATABASE_NAME')),
+        'USER': str(os.getenv('DATABASE_USER')),
+        'PASSWORD': str(os.getenv('DATABASE_PASS')),
+        'HOST': str(os.getenv('DB_HOST')),
+        "PORT": str(os.getenv('PORT')),
     }
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {

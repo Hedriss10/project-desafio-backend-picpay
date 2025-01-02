@@ -4,6 +4,6 @@ from rest_framework import routers, serializers, viewsets
 from . import views
 
 
-urlpatterns = [
-    path('', views.index, name='index'),
-]
+# urlpatterns = [
+#     path('', views.index, name='index'),
+# ]
