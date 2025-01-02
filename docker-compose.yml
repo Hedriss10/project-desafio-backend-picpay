@@ -1,15 +1,28 @@
-# docker-compose.yml
-version: '3'
+version: '3.9'
 services:
-  postgres:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  db:
+    image: postgres:latest
+    container_name: postgres_drf
+    restart: always
+    environment:
+      POSTGRES_DB: apirestdjangoframework
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
     ports:
       - "5432:5432"
     volumes:
-      - ./database:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: apirestdjangoframework
-      POSTGRES_USER: root
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: django_drf
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
