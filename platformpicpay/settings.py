@@ -59,15 +59,17 @@ REST_FRAMEWORK = {
 WSGI_APPLICATION = 'platformpicpay.wsgi.application'
 
 DATABASES = {
-    "default": {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': str(os.getenv('DATABASE_NAME')),
-        'USER': str(os.getenv('DATABASE_USER')),
-        'PASSWORD': str(os.getenv('DATABASE_PASS')),
-        'HOST': str(os.getenv('DB_HOST')),
-        "PORT": str(os.getenv('PORT')),
+        'NAME': os.getenv('PG_DB'),
+        'USER': os.getenv('PG_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
+        'HOST': os.getenv('PG_HOST'),
+        'PORT': os.getenv('PG_PORT'),
     }
 }
+
+print(DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
